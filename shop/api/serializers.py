@@ -699,7 +699,7 @@ class MealSerializer(serializers.ModelSerializer):
         order = Order.objects.filter(meal=obj)
         for o in order:
             if o.status == 0 or o.status == 9:
-                total_tax += o.vip_tax_value
+                total_tax += float(o.vip_tax_value)
             else:
                 total_tax += round(PayInfo.objects.get(order=o).money / 1.08 * 0.08, 0)
 
