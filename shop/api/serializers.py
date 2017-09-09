@@ -1304,7 +1304,7 @@ class RefundOrderDetailSerializer(serializers.ModelSerializer):
             return RefundOrderFoodSerializer(order_food, many=True).data
         else:
             order_food = Order_Food.objects.get(id=obj.food_id)
-            return RefundOrderFoodSerializer(order_food).data
+            return RefundOrderFoodSerializer(order_food, many=True).data
 
     class Meta:
         model = RefundOrder
