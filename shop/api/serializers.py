@@ -445,12 +445,12 @@ class OrderFoodSerializer(serializers.ModelSerializer):
     vip_tax = serializers.SerializerMethodField()
     img = serializers.SerializerMethodField()
     tags = TagSerializer(source='tag', many=True, read_only=True)
-    food_vip_price = serializers.CharField(source='food_spec.vip_price')
+    food_vip_price = serializers.SerializerMethodField()    # serializers.CharField(source='food_spec.vip_price')
     food_price = serializers.CharField(source='food_spec.price')
     is_one_spec = serializers.SerializerMethodField()
     food_tax = serializers.SerializerMethodField()
     include_price = serializers.DecimalField(source='food_spec.in_tax_price', max_digits=5, decimal_places=0)
-    vip_include_price = serializers.DecimalField(source='food_spec.in_tax_vip_price', max_digits=5, decimal_places=0)
+    vip_include_price = serializers.SerializerMethodField()  # serializers.DecimalField(source='food_spec.in_tax_vip_price', max_digits=5, decimal_places=0)
     total_price = serializers.SerializerMethodField()
     vip_total_price = serializers.SerializerMethodField()
     total_tax = serializers.SerializerMethodField()
@@ -458,6 +458,16 @@ class OrderFoodSerializer(serializers.ModelSerializer):
     include_total_price = serializers.SerializerMethodField()
     vip_include_total_price = serializers.SerializerMethodField()
     is_preferent = serializers.SerializerMethodField()
+
+    def get_vip_include_price(self, obj):
+        if obj.food_spec.in_tax_vip_price == 0:
+            return obj.food_spec.in_tax_price
+        return obj.food_spec.in_tax_vip_price
+
+    def get_food_vip_price(self, obj):
+        if obj.food_spec.vip_price == 0:
+            return obj.food_spec.price
+        return obj.food_spec.vip_price
 
     def get_is_preferent(self, obj):
         """
@@ -485,7 +495,7 @@ class OrderFoodSerializer(serializers.ModelSerializer):
         :param obj:
         :return:
         """
-        return obj.food_spec.vip_tax_value * Decimal(obj.num)
+        return obj.food_spec.tax_value if obj.food_spec.vip_tax_value == 0 else obj.food_spec.vip_tax_value * Decimal(obj.num)
 
     def get_total_price(self, obj):
         """
@@ -501,6 +511,8 @@ class OrderFoodSerializer(serializers.ModelSerializer):
         :param obj:
         :return:
         """
+        if obj.food_spec.vip_price == 0:
+            return obj.food_spec.price * Decimal(obj.num)
         return obj.food_spec.vip_price * Decimal(obj.num)
 
     def get_include_total_price(self, obj):
@@ -517,7 +529,7 @@ class OrderFoodSerializer(serializers.ModelSerializer):
         :param obj:
         :return:
         """
-        return obj.food_spec.in_tax_vip_price * Decimal(obj.num)
+        return obj.food_spec.in_tax_price if obj.food_spec.in_tax_vip_price == 0 else obj.food_spec.in_tax_vip_price * Decimal(obj.num)
 
     def get_food_tax(self, obj):
         """
@@ -547,7 +559,7 @@ class OrderFoodSerializer(serializers.ModelSerializer):
         :param obj:
         :return:
         """
-        return obj.food_spec.vip_tax_value
+        return obj.food_spec.tax_value if obj.food_spec.vip_tax_value == 0 else obj.food_spec.vip_tax_value
 
     def get_img(self, obj):
         img = FoodImage.objects.filter(food=obj.food).first()
