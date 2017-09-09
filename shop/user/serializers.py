@@ -117,7 +117,7 @@ class Store_AdSerializer(ModelSerializer):
 
 class MealStoreIndexSerializer(ModelSerializer):
     last_unpay_order_id = SerializerMethodField()
-    desk_display_number = CharField(source='desk.number')
+    desk_display_number = CharField(source='desk.display_number')
 
     def get_last_unpay_order_id(self, obj):
         ret = Order.objects.filter(meal_id=obj.id, status=0).order_by('-created')
