@@ -690,7 +690,7 @@ class MealSerializer(serializers.ModelSerializer):
             if o.status == 0 or o.status == 9:
                 total_tax += o.tax_value
             else:
-                total_tax += PayInfo.objects.get(order=o).tax
+                total_tax += round(PayInfo.objects.get(order=o).money / 1.08 * 0.08, 0)
 
         return total_tax
 
@@ -701,7 +701,7 @@ class MealSerializer(serializers.ModelSerializer):
             if o.status == 0 or o.status == 9:
                 total_tax += o.vip_tax_value
             else:
-                total_tax += PayInfo.objects.get(order=o).tax
+                total_tax += round(PayInfo.objects.get(order=o).money / 1.08 * 0.08, 0)
 
         return total_tax
 
