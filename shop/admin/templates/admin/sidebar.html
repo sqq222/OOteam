@@ -1,0 +1,234 @@
+<div class="page-sidebar-wrapper">
+                <!-- BEGIN SIDEBAR -->
+                <!-- DOC: Set data-auto-scroll="false" to disable the sidebar from auto scrolling/focusing -->
+                <!-- DOC: Change data-auto-speed="200" to adjust the sub menu slide up/down speed -->
+                <div class="page-sidebar navbar-collapse collapse">
+                    <!-- BEGIN SIDEBAR MENU -->
+                    <!-- DOC: Apply "page-sidebar-menu-light" class right after "page-sidebar-menu" to enable light sidebar menu style(without borders) -->
+                    <!-- DOC: Apply "page-sidebar-menu-hover-submenu" class right after "page-sidebar-menu" to enable hoverable(hover vs accordion) sub menu mode -->
+                    <!-- DOC: Apply "page-sidebar-menu-closed" class right after "page-sidebar-menu" to collapse("page-sidebar-closed" class must be applied to the body element) the sidebar sub menu mode -->
+                    <!-- DOC: Set data-auto-scroll="false" to disable the sidebar from auto scrolling/focusing -->
+                    <!-- DOC: Set data-keep-expand="true" to keep the submenues expanded -->
+                    <!-- DOC: Set data-auto-speed="200" to adjust the sub menu slide up/down speed -->
+                    <ul class="page-sidebar-menu  page-header-fixed " data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200" style="padding-top: 20px">
+                        <!-- DOC: To remove the sidebar toggler from the sidebar you just need to completely remove the below "sidebar-toggler-wrapper" LI element -->
+                        <li class="sidebar-toggler-wrapper hide">
+                            <!-- BEGIN SIDEBAR TOGGLER BUTTON -->
+                            <div class="sidebar-toggler"> </div>
+                            <!-- END SIDEBAR TOGGLER BUTTON -->
+                        </li>
+                        <!-- DOC: To remove the search box from the sidebar you just need to completely remove the below "sidebar-search-wrapper" LI element -->
+                        <li class="sidebar-search-wrapper">
+                            <!-- BEGIN RESPONSIVE QUICK SEARCH FORM -->
+                            <!-- DOC: Apply "sidebar-search-bordered" class the below search form to have bordered search box -->
+                            <!-- DOC: Apply "sidebar-search-bordered sidebar-search-solid" class the below search form to have bordered & solid search box -->
+                            <form class="sidebar-search  " action="page_general_search_3.html" method="POST">
+                                <a href="javascript:;" class="remove">
+                                    <i class="icon-close"></i>
+                                </a>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="Search...">
+                                    <span class="input-group-btn">
+                                        <a href="javascript:;" class="btn submit">
+                                            <i class="icon-magnifier"></i>
+                                        </a>
+                                    </span>
+                                </div>
+                            </form>
+                            <!-- END RESPONSIVE QUICK SEARCH FORM -->
+                        </li>
+                        <li class="nav-item {% if module_name and module_name == 'dashboard' %} start active open {% endif %}">
+                            <a href="/admin/index/" class="nav-link ">
+                                <i class="icon-bar-chart"></i>
+                                <span class="title">控制台</span>
+                                <span class="selected"></span>
+                            </a>
+
+                        </li>
+                        <!--li class="heading">
+                            <h3 class="uppercase">Features</h3>
+                        </li-->
+                        <li class="nav-item {% if module_name and module_name == 'adminuser_manage' %} start active open {% endif %}" >
+                        <a href="/admin/user/?type=admin" class="nav-link ">
+                                <i class="icon-user"></i>
+                                <span class="title">后台用户管理</span>
+                                <span class="selected"></span>
+                            </a>
+
+                        </li>
+                        <li class="nav-item {% if module_name and module_name == 'user_manage' %} start active open {% endif %}" >
+                        <a href="/admin/user/?type=player" class="nav-link ">
+                                <i class="icon-user"></i>
+                                <span class="title">游戏用户管理</span>
+                                <span class="selected"></span>
+                            </a>
+
+                        </li>
+                        <li class="nav-item {% if module_name and module_name == 'user_data_basic' or module_name == 'user_data_added' or module_name == 'user_data_active' or module_name == 'user_data_stay' %} start active open {% endif %}">
+                            <a href="javascript:;" class="nav-link nav-toggle">
+                                <i class="icon-settings"></i>
+                                <span class="title">用户数据</span>
+                                <span class="arrow"></span>
+                            </a>
+                            <ul class="sub-menu">
+                                <li class="nav-item {% if module_name and module_name == 'user_data_basic' %} start active open {% endif %} ">
+                                    <a href="/admin/user_data/basic/" class="nav-link ">
+                                        <span class="title">基本情况</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item {% if module_name and module_name == 'user_data_added' %} start active open {% endif %}">
+                                    <a href="/admin/user_data/new_player/" class="nav-link ">
+                                        <span class="title">新增玩家</span>
+                                        <span class="badge badge-danger">0 新</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item {% if module_name and module_name == 'user_data_active' %} start active open {% endif %}">
+                                    <a href="/admin/user_data/player_active/" class="nav-link ">
+                                        <span class="title">玩家活跃</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item {% if module_name and module_name == 'user_data_stay' %} start active open {% endif %}">
+                                    <a href="/admin/user_data/player_stay/" class="nav-link ">
+                                        <span class="title">玩家留存</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item  ">
+                                    <a href="components_multi_select.html" class="nav-link ">
+                                        <span class="title">玩家流失</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item  ">
+                                    <a href="components_multi_select.html" class="nav-link ">
+                                        <span class="title">玩家习惯</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item  ">
+                                    <a href="components_multi_select.html" class="nav-link ">
+                                        <span class="title">核心玩家分析</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item ">
+                            <a href="javascript:;" class="nav-link nav-toggle">
+                                <i class="icon-settings"></i>
+                                <span class="title">参数配置</span>
+                                <span class="arrow"></span>
+                            </a>
+                            <ul class="sub-menu">
+                                <li class="nav-item  ">
+                                    <a href="components_date_time_pickers.html" class="nav-link ">
+                                        <span class="title">抽取概率配置</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item  ">
+                                    <a href="components_color_pickers.html" class="nav-link ">
+                                        <span class="title">小游戏配置</span>
+                                        <span class="badge badge-danger">2 新</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item  ">
+                                    <a href="components_select2.html" class="nav-link ">
+                                        <span class="title">题库配置</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item  ">
+                                    <a href="components_bootstrap_select.html" class="nav-link ">
+                                        <span class="title">随机事件配置</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item  ">
+                                    <a href="components_multi_select.html" class="nav-link ">
+                                        <span class="title">游戏&题库结果奖惩配置</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item  ">
+                            <a href="javascript:;" class="nav-link nav-toggle">
+                                <i class="icon-pointer"></i>
+                                <span class="title">数据统计</span>
+                                <span class="arrow"></span>
+                            </a>
+                            <ul class="sub-menu">
+                                <li class="nav-item  ">
+                                    <a href="#" class="nav-link ">
+                                        <span class="title">开局统计</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item  ">
+                                    <a href="#" class="nav-link ">
+                                        <span class="title">游戏数据</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item  ">
+                                    <a href="#" class="nav-link ">
+                                        <span class="title">题库数据</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item  {% if module_name and module_name == 'identityadd' %} active open {% endif %} {% if module_name and module_name == 'identitymanage' %} active open {% endif %}">
+                            <a href="javascript:;" class="nav-link nav-toggle ">
+                                <i class="icon-note"></i>
+                                <span class="title">身份卡管理</span>
+                                <span class="selected"></span>
+                                <span class="arrow {% if module_name and module_name == 'identityadd' %} open {% endif %} {% if module_name and module_name == 'identitymanage' %} open{% endif %}"></span>
+                            </a>
+                            <ul class="sub-menu">
+                                <li class="nav-item {% if module_name and module_name == 'identitymanage' %} active open {% endif %}">
+                                    <a href="/admin/identity/" class="nav-link ">
+                                        <span class="title">身份卡</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item {% if module_name and module_name == 'identityadd' %} active open {% endif %} ">
+                                    <a href="/admin/identity/add/" class="nav-link">
+                                        <span class="title">添加身份卡</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="nav-item  {% if module_name and module_name == 'templatemanage' %} active open {% endif %} {% if module_name and module_name == 'templateparams' %} active open {% endif %}">
+                            <a href="javascript:;" class="nav-link nav-toggle ">
+                                <i class="icon-note"></i>
+                                <span class="title">模板管理</span>
+                                <span class="selected"></span>
+                                <span class="arrow {% if module_name and module_name == 'templatemanage' %} open {% endif %} {% if module_name and module_name == 'templateparams' %} open{% endif %}"></span>
+                            </a>
+                            <ul class="sub-menu">
+                                <li class="nav-item {% if module_name and module_name == 'templatemanage' %} active open {% endif %}">
+                                    <a href="/admin/docs/template_manage" class="nav-link ">
+                                        <span class="title">模板</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="nav-item  {% if module_name and module_name == 'docsmanage' %} active open {% endif %} {% if module_name and module_name == 'docsmenu' %} active open {% endif %}">
+                            <a href="javascript:;" class="nav-link nav-toggle ">
+                                <i class="icon-note"></i>
+                                <span class="title">文档管理</span>
+                                <span class="selected"></span>
+                                <span class="arrow {% if module_name and module_name == 'docsmanage' %} open {% endif %} {% if module_name and module_name == 'docsmenu' %} open{% endif %}"></span>
+                            </a>
+                            <ul class="sub-menu">
+                                <li class="nav-item {% if module_name and module_name == 'docsmenu' %} active open {% endif %}">
+                                    <a href="/admin/docs/menu_manage/" class="nav-link ">
+                                        <span class="title">文档目录</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item {% if module_name and module_name == 'docsmanage' %} active open {% endif %}">
+                                    <a href="/admin/identity/" class="nav-link ">
+                                        <span class="title">文档</span>
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </li>
+                    </ul>
+                    <!-- END SIDEBAR MENU -->
+                    <!-- END SIDEBAR MENU -->
+                </div>
+                <!-- END SIDEBAR -->
+            </div>

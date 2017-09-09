@@ -1,0 +1,25 @@
+#!/bin/bash
+
+NAME="celery"                                  # Name of the application
+DJANGODIR=/shop/shop/shop             # Django project directory
+USER=root                                        # the user to run as
+GROUP=root                                     # the group to run as
+DJANGO_SETTINGS_MODULE=shop.settings             # which settings file should Django use
+
+echo "Starting $NAME as `whoami`"
+
+# Activate the virtual environment
+cd $DJANGODIR
+source ../bin/activate
+echo "Entring pyenv..."
+export DJANGO_SETTINGS_MODULE=$DJANGO_SETTINGS_MODULE
+#export PYTHONPATH=$DJANGODIR:$PYTHONPATH
+
+# Create the run directory if it doesn't exist
+#RUNDIR=$(dirname $SOCKFILE)
+#test -d $RUNDIR || mkdir -p $RUNDIR
+
+# Start your Django Unicorn
+# Programs meant to be run under supervisor should not daemonize themselves (do not use --daemon)
+echo "Starting celery  application..."
+exec ../bin/celery -A shop worker -l info
