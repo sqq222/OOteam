@@ -1107,6 +1107,8 @@ class KitChenOrderSerializer(serializers.Serializer):
         request = self.context['request']
         meal = Meal.objects.filter(created__range=(timezone.now() + timedelta(hours=-5), timezone.now()),
                                    status=0, order_meal__status__range=(1, 8), store=request.user.store).distinct()
+        if 'kitchen' in request.GET:
+            meal = meal.filter(order_meal__order_food__kitchen_id=request.GET.get('kitchen')).order_by('created')
 
         result_list1 = []
         result_list2 = []
@@ -1120,8 +1122,6 @@ class KitChenOrderSerializer(serializers.Serializer):
         # 排序
         result_list2 = sorted(result_list2, key=lambda x: x.order_time, reverse=False)
 
-        # if 'kitchen' in request.GET:
-        #     meal = meal.filter(order_meal__order_food__kitchen_id=request.GET.get('kitchen')).order_by('created')
         # order = order.filter(order_food__food__kitchen_id=request.GET.get('kitchen'))
         # order.order_by('created')
         result = itertools.chain(result_list1, result_list2)

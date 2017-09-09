@@ -125,7 +125,7 @@ class MealStoreIndexSerializer(ModelSerializer):
 
     class Meta:
         model = Meal
-        fields = ('id', 'desk', 'last_unpay_order_id')
+        fields = ('id', 'desk', 'last_unpay_order_id', 'desk_display_number')
 
 
 class StoreIndexSerializer(ModelSerializer):
