@@ -859,9 +859,9 @@ class KitchenFoodSerializer(serializers.ModelSerializer):
 
     def get_price(self, obj):
         if obj.food.is_include_tax:
-            return round(obj.price + obj.tax_value, 0)
+            return round(obj.food_spec.in_tax_price, 0)
         else:
-            return round(obj.price, 0)
+            return round(obj.food_spec.price, 0)
 
     def get_one_spec(self, obj):
         if FoodSpec.objects.filter(food_id=obj.food.id).count() > 1:
