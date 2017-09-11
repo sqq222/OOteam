@@ -92,7 +92,7 @@ class RegCodeVer(views.APIView):
 
             if user.code.upper() == request.data['code'].upper():
                 user.set_password(request.data['password'])
-                user.basemob_uuid = utils.Easemob.register_user(user.username, user.password)
+
                 user.save()
                 return Response({'success': True})
             else:

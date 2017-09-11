@@ -612,17 +612,21 @@ class OrderSerializer(serializers.ModelSerializer):
                 total_tax += r.tax_value
             return total_tax
         else:
-            return PayInfo.objects.get(order=obj).tax
+            return round(PayInfo.objects.get(order=obj).money / 1.08 * 0.08, 0)
 
     def get_total_vip_tax(self, obj):
+
         if obj.status == 0 or obj.status == 9:
             ret = Order_Food.objects.filter(order_id=obj.id)
             total_tax = 0
             for r in ret:
-                total_tax += r.vip_tax_value
+                if r.vip_tax_value == 0:
+                    total_tax += r.tax_value
+                else:
+                    total_tax += r.vip_tax_value
             return total_tax
         else:
-            return PayInfo.objects.get(order=obj).tax
+            return round(PayInfo.objects.get(order=obj).money / 1.08 * 0.08, 0)
 
     def get_total_price(self, obj):
         total_price = 0
@@ -635,7 +639,10 @@ class OrderSerializer(serializers.ModelSerializer):
     def get_total_vip_price(self, obj):
         total_price = 0
         if obj.status == 0 or obj.status == 9:
-            total_price += obj.total_vip_price + obj.vip_tax_value
+            if obj.total_vip_price == 0:
+                total_price += obj.total_price + obj.tax_value
+            else:
+                total_price += obj.total_vip_price + obj.vip_tax_value
         elif obj.status > 0 and obj.status is not 9:
             total_price += PayInfo.objects.get(order=obj).money if PayInfo.objects.filter(order=obj).exists() else 0
         return total_price
@@ -675,7 +682,10 @@ class MealSerializer(serializers.ModelSerializer):
         total_price = 0
         for o in order:
             if o.status == 0 or o.status == 9:
-                total_price += o.total_vip_price + o.vip_tax_value
+                if o.total_vip_price == 0:
+                    total_price += o.total_price + o.tax_value
+                else:
+                    total_price += o.total_vip_price + o.vip_tax_value
             elif o.status > 0:
                 try:
                     total_price += PayInfo.objects.get(order=o).money
@@ -699,7 +709,10 @@ class MealSerializer(serializers.ModelSerializer):
         order = Order.objects.filter(meal=obj)
         for o in order:
             if o.status == 0 or o.status == 9:
-                total_tax += float(o.vip_tax_value)
+                if o.vip_tax_value == 0:
+                    total_tax += float(o.tax_value)
+                else:
+                    total_tax += float(o.vip_tax_value)
             else:
                 total_tax += round(PayInfo.objects.get(order=o).money / 1.08 * 0.08, 0)
 
@@ -1120,7 +1133,7 @@ class KitChenOrderSerializer(serializers.Serializer):
         meal = Meal.objects.filter(created__range=(timezone.now() + timedelta(hours=-5), timezone.now()),
                                    status=0, order_meal__status__range=(1, 8), store=request.user.store).distinct()
         if 'kitchen' in request.GET:
-            meal = meal.filter(order_meal__order_food__kitchen_id=request.GET.get('kitchen')).order_by('created')
+            meal = meal.filter(order_meal__order_food__food__kitchen__id=request.GET.get('kitchen')).order_by('created')
 
         result_list1 = []
         result_list2 = []

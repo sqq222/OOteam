@@ -677,6 +677,15 @@ class MealViewSet(UnActiveModelMixin, ModelViewSet):
 
     @list_route(methods=['post'])
     @is_login
+    def meal_add_user(self, request):
+        meal_id = request.data['meal_id']
+        user = request.user
+        meal = Meal.objects.get(pk=meal_id)
+        meal.user.add(user)
+        return Response({'success': True})
+
+    @list_route(methods=['post'])
+    @is_login
     def get_all_meal_by_user(self, request):
         return Response(MealByUserSerializer(Meal.objects.filter(user=request.user,status=0), many=True).data)
 

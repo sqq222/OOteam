@@ -447,6 +447,9 @@ class AbstractUser(AbstractBaseUser, PermissionsMixin):
         # super(Order, self).save(*args, **kwargs)
 
         self.code = get_random_string(length=8, allowed_chars='0123456789')
+        if self.pk is None:
+            from shop import utils
+            self.basemob_uuid = utils.Easemob.register_user(self.username, self.password, self.fullname)
         super(AbstractUser, self).save(force_insert, force_update, using, update_fields)
 
 
