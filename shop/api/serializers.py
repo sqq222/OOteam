@@ -639,10 +639,12 @@ class OrderSerializer(serializers.ModelSerializer):
     def get_total_vip_price(self, obj):
         total_price = 0
         if obj.status == 0 or obj.status == 9:
-            if obj.total_vip_price == 0:
-                total_price += obj.total_price + obj.tax_value
-            else:
-                total_price += obj.total_vip_price + obj.vip_tax_value
+            order_food = Order_Food.objects.filter(order_id=obj.id)
+            for o in order_food:
+                if o.vip_price == 0:
+                    total_price += o.price + o.tax_value
+                else:
+                    total_price += o.vip_price + o.vip_tax_value
         elif obj.status > 0 and obj.status is not 9:
             total_price += PayInfo.objects.get(order=obj).money if PayInfo.objects.filter(order=obj).exists() else 0
         return total_price
