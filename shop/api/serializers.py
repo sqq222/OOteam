@@ -1319,7 +1319,7 @@ class RefundOrderDetailSerializer(serializers.ModelSerializer):
             order_food = Order_Food.objects.filter(order_id=obj.order_id)
             return RefundOrderFoodSerializer(order_food, many=True).data
         else:
-            order_food = Order_Food.objects.get(id=obj.food_id)
+            order_food = Order_Food.objects.filter(id=obj.food_id)
             return RefundOrderFoodSerializer(order_food, many=True).data
 
     class Meta:
