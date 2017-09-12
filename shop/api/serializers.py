@@ -684,10 +684,12 @@ class MealSerializer(serializers.ModelSerializer):
         total_price = 0
         for o in order:
             if o.status == 0 or o.status == 9:
-                if o.total_vip_price == 0:
-                    total_price += o.total_price + o.tax_value
-                else:
-                    total_price += o.total_vip_price + o.vip_tax_value
+                order_food = Order_Food.objects.filter(order_id=o.id)
+                for f in order_food:
+                    if f.vip_price == 0:
+                        total_price += f.price + f.tax_value
+                    else:
+                        total_price += f.vip_price + f.vip_tax_value
             elif o.status > 0:
                 try:
                     total_price += PayInfo.objects.get(order=o).money
@@ -711,10 +713,12 @@ class MealSerializer(serializers.ModelSerializer):
         order = Order.objects.filter(meal=obj)
         for o in order:
             if o.status == 0 or o.status == 9:
-                if o.vip_tax_value == 0:
-                    total_tax += float(o.tax_value)
-                else:
-                    total_tax += float(o.vip_tax_value)
+                order_food = Order_Food.objects.filter(order_id=o.id)
+                for f in order_food:
+                    if f.vip_price == 0:
+                        total_tax += float(f.tax_value)
+                    else:
+                        total_tax += float(f.vip_tax_value)
             else:
                 total_tax += round(PayInfo.objects.get(order=o).money / 1.08 * 0.08, 0)
 
@@ -930,9 +934,6 @@ class KitChenMealSerializer(serializers.ModelSerializer):
     details = serializers.SerializerMethodField()
     refund_id = serializers.SerializerMethodField()
     own_waiter = serializers.SerializerMethodField()
-
-    # status = serializers.SerializerMethodField()
-    # serializers.IntegerField(source='order_food.status')  # TODO: Fix bug: status is not exist
 
     def get_is_pay(self, obj):
         if Order.objects.filter(meal_id=obj.id, status=1).count() > 0:
