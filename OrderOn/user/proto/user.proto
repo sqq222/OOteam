@@ -1,0 +1,73 @@
+syntax ="proto3";
+
+//登录
+message LoginRequest{
+	string telephone=1;
+	string password=2;
+}
+
+//登录返回
+message LoginResponse{
+	int32 statuscode = 1;
+	string token = 2;
+	string time = 3;
+	string refreshtoken = 4;
+}
+
+//用户实体
+message UserInfo{
+	string fullname = 1;
+	string sex = 2;
+	uint64 birthday = 3;
+}
+
+//发送验证码
+message sendTelephoneCodeRequest{
+	string telephone = 1;
+}
+
+//发送验证码
+message sendTelephoneCodeResponse{
+	int32 statuscode = 1;
+}
+
+//验证手机
+message verfTelephoneRequest{
+	string telephone = 1;
+	int32 code = 2;
+}
+
+//验证手机返回
+message verfTelephoneResponse{
+	int32 statuscode = 1;
+}
+
+message createRoleRequest{
+	string fullname = 1;
+	string birthday = 2;
+	string sex = 3;
+}
+
+message Role{
+	string roleid = 1;
+	string fullname = 2;
+	string imgindex = 3;
+	bool isTemp = 4;
+}
+
+message createRoleResponse{
+	int32 statuscode = 1;
+	string userid = 2;
+	string fullname = 3;
+	Role role = 4;
+}
+
+message getRolesRequest{
+	string token = 1;
+}
+
+message getRolesResponse{
+	int32 statuscode = 1;
+	repeated Role roles = 2;
+}
+

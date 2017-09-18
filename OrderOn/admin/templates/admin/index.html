@@ -1,0 +1,442 @@
+{% load static %}
+
+<!DOCTYPE html>
+<!--
+Template Name: Metronic - Responsive Admin Dashboard Template build with Twitter Bootstrap 3.3.6
+Version: 4.5.3
+Author: KeenThemes
+Website: http://www.keenthemes.com/
+Contact: support@keenthemes.com
+Follow: www.twitter.com/keenthemes
+Like: www.facebook.com/keenthemes
+Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes
+License: You must have a valid license purchased only from themeforest(the above link) in order to legally use the theme for your project.
+-->
+<!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en">
+    <!--<![endif]-->
+    <!-- BEGIN HEAD -->
+
+    <head>
+        <meta charset="utf-8" />
+        <title>星球科学家 | 控制台</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta content="width=device-width, initial-scale=1" name="viewport" />
+        <meta content="" name="description" />
+        <meta content="" name="author" />
+        <!-- BEGIN GLOBAL MANDATORY STYLES -->
+        <link href="{% static 'admin/css/font.css' %}" rel="stylesheet" type="text/css" />
+        <link href="{% static 'admin/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css" />
+        <link href="{% static 'admin/css/simple-line-icons.min.css' %}" rel="stylesheet" type="text/css" />
+        <link href="{% static 'admin/css/bootstrap.min.css' %}" rel="stylesheet" type="text/css" />
+        <link href="{% static 'admin/css/uniform.default.css' %}" rel="stylesheet" type="text/css" />
+        <link href="{% static 'admin/css/bootstrap-switch.min.css' %}" rel="stylesheet" type="text/css" />
+        <!-- END GLOBAL MANDATORY STYLES -->
+        <!-- BEGIN PAGE LEVEL PLUGINS -->
+        <link href="{% static 'admin/css/daterangepicker.min.css' %}" rel="stylesheet" type="text/css" />
+        <link href="{% static 'admin/css/morris.css' %}" rel="stylesheet" type="text/css" />
+        <link href="{% static 'admin/css/fullcalendar.min.css' %}" rel="stylesheet" type="text/css" />
+        <!-- END PAGE LEVEL PLUGINS -->
+        <!-- BEGIN THEME GLOBAL STYLES -->
+        <link href="{% static 'admin/css/components-md.min.css' %}" rel="stylesheet" id="style_components" type="text/css" />
+        <link href="{% static 'admin/css/plugins-md.min.css' %}" rel="stylesheet" type="text/css" />
+        <!-- END THEME GLOBAL STYLES -->
+        <!-- BEGIN THEME LAYOUT STYLES -->
+        <link href="{% static 'admin/css/layout.min.css' %}" rel="stylesheet" type="text/css" />
+        <link href="{% static 'admin/css/darkblue.min.css' %}" rel="stylesheet" type="text/css" id="style_color" />
+        <link href="{% static 'admin/css/custom.min.css' %}" rel="stylesheet" type="text/css" />
+        <!-- END THEME LAYOUT STYLES -->
+        <link rel="shortcut icon" href="favicon.ico" /> </head>
+    <!-- END HEAD -->
+
+    <body class="page-header-fixed page-sidebar-closed-hide-logo page-content-white page-md">
+        <!-- BEGIN HEADER -->
+        <div class="page-header navbar navbar-fixed-top">
+            <!-- BEGIN HEADER INNER -->
+            <div class="page-header-inner ">
+                <!-- BEGIN LOGO -->
+                <div class="page-logo">
+                    <a href="index.html">
+                        {# <img src="{% static 'admin/img/logo.png' %}" alt="logo" class="logo-default" />  #}</a>
+                    <div class="menu-toggler sidebar-toggler"> </div>
+                </div>
+                <!-- END LOGO -->
+                <!-- BEGIN RESPONSIVE MENU TOGGLER -->
+                <a href="javascript:;" class="menu-toggler responsive-toggler" data-toggle="collapse" data-target=".navbar-collapse"> </a>
+                <!-- END RESPONSIVE MENU TOGGLER -->
+                <!-- BEGIN TOP NAVIGATION MENU -->
+                <div class="top-menu">
+                    <ul class="nav navbar-nav pull-right">
+                        <!-- BEGIN NOTIFICATION DROPDOWN -->
+                        <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
+
+                        <!-- END NOTIFICATION DROPDOWN -->
+                        <!-- BEGIN INBOX DROPDOWN -->
+                        <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
+
+                        <!-- END INBOX DROPDOWN -->
+                        <!-- BEGIN TODO DROPDOWN -->
+                        <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
+
+                        <!-- END TODO DROPDOWN -->
+                        <!-- BEGIN USER LOGIN DROPDOWN -->
+                        <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
+                        <li class="dropdown dropdown-user">
+                            <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+                                <span class="username username-hide-on-mobile"> {{ request.user.get_full_name }} </span>
+                                <i class="fa fa-angle-down"></i>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-default">
+                                <li>
+                                    <a href="page_user_profile_1.html">
+                                        <i class="icon-user"></i> 我的资料 </a>
+                                </li>
+                                <li class="divider"> </li>
+                                <li>
+                                    <a href="/admin/lock/">
+                                        <i class="icon-lock"></i> 锁屏 </a>
+                                </li>
+                                <li>
+                                    <a  data-toggle="modal" data-target="#myModal">
+                                        <i class="icon-key"></i> 注销 </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <!-- END USER LOGIN DROPDOWN -->
+                        <!-- BEGIN QUICK SIDEBAR TOGGLER -->
+                        <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
+                        <!-- END QUICK SIDEBAR TOGGLER -->
+                    </ul>
+                </div>
+                <!-- END TOP NAVIGATION MENU -->
+            </div>
+            <!-- END HEADER INNER -->
+        </div>
+        <!-- END HEADER -->
+        <!-- BEGIN HEADER & CONTENT DIVIDER -->
+        <div class="clearfix"> </div>
+        <!-- END HEADER & CONTENT DIVIDER -->
+        <!-- BEGIN CONTAINER -->
+        <div class="page-container">
+            <!-- BEGIN SIDEBAR -->
+            {% include 'admin/sidebar.html' %}
+            <!-- END SIDEBAR -->
+            <!-- BEGIN CONTENT -->
+            <div class="page-content-wrapper">
+                <!-- BEGIN CONTENT BODY -->
+                <div class="page-content">
+                    <!-- BEGIN PAGE HEADER-->
+                    <!-- BEGIN THEME PANEL -->
+
+                    <!-- END THEME PANEL -->
+                    <!-- BEGIN PAGE BAR -->
+                    <div class="page-bar">
+                        <ul class="page-breadcrumb">
+                            <li>
+                                <a href="index.html">首页</a>
+                                <i class="fa fa-circle"></i>
+                            </li>
+                            <li>
+                                <span>控制台</span>
+                            </li>
+                        </ul>
+                        <div class="page-toolbar">
+                            <div id="dashboard-report-range" class="pull-right tooltips btn btn-sm" data-container="body" data-placement="bottom" data-original-title="点击修改控制台数据的日期范围">
+                                <i class="icon-calendar"></i>&nbsp;
+                                <span class="thin uppercase hidden-xs"></span>&nbsp;
+                                <i class="fa fa-angle-down"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- END PAGE BAR -->
+                    <!-- BEGIN PAGE TITLE-->
+                    <h3 class="page-title"> 控制台
+                        <small>控制台 & 统计</small>
+                    </h3>
+                    <!-- END PAGE TITLE-->
+                    <!-- END PAGE HEADER-->
+                    <!-- BEGIN DASHBOARD STATS 1-->
+                    <div class="row">
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                            <div class="dashboard-stat blue">
+                                <div class="visual">
+                                    <i class="fa fa-comments"></i>
+                                </div>
+                                <div class="details">
+                                    <div class="number">
+                                        <span data-counter="counterup" data-value="1349">0</span>
+                                    </div>
+                                    <div class="desc"> 新用户 </div>
+                                </div>
+                                <a class="more" href="javascript:;"> 更多
+                                    <i class="m-icon-swapright m-icon-white"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                            <div class="dashboard-stat red">
+                                <div class="visual">
+                                    <i class="fa fa-bar-chart-o"></i>
+                                </div>
+                                <div class="details">
+                                    <div class="number">
+                                        <span data-counter="counterup" data-value="125">0</span>局 </div>
+                                    <div class="desc"> 今日游戏量 </div>
+                                </div>
+                                <a class="more" href="javascript:;"> 更多
+                                    <i class="m-icon-swapright m-icon-white"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                            <div class="dashboard-stat green">
+                                <div class="visual">
+                                    <i class="fa fa-shopping-cart"></i>
+                                </div>
+                                <div class="details">
+                                    <div class="number">
+                                        <span data-counter="counterup" data-value="549">549</span>
+                                    </div>
+                                    <div class="desc"> 绑定身份卡 </div>
+                                </div>
+                                <a class="more" href="javascript:;"> 更多
+                                    <i class="m-icon-swapright m-icon-white"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                            <div class="dashboard-stat purple">
+                                <div class="visual">
+                                    <i class="fa fa-globe"></i>
+                                </div>
+                                <div class="details">
+                                    <div class="number"> +
+                                        <span data-counter="counterup" data-value="89"></span>% </div>
+                                    <div class="desc"> 游戏增长率 </div>
+                                </div>
+                                <a class="more" href="javascript:;"> 更多
+                                    <i class="m-icon-swapright m-icon-white"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <!-- END DASHBOARD STATS 1-->
+                    <div class="row">
+                        <div class="col-md-6 col-sm-6">
+                            <!-- BEGIN PORTLET-->
+                            <div class="portlet light bordered">
+                                <div class="portlet-title">
+                                    <div class="caption">
+                                        <i class="icon-bar-chart font-green"></i>
+                                        <span class="caption-subject font-green bold uppercase">新增用户</span>
+                                        <span class="caption-helper"></span>
+                                    </div>
+
+                                </div>
+                                <div class="portlet-body">
+                                    <div id="site_statistics_loading">
+                                        <img src="{% static 'admin/img/loading.gif' %}" alt="loading" /> </div>
+                                    <div id="site_statistics_content" class="display-none">
+                                        <div id="site_statistics" class="chart"> </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- END PORTLET-->
+                        </div>
+                        <div class="col-md-6 col-sm-6">
+                            <!-- BEGIN PORTLET-->
+                            <div class="portlet light bordered">
+                                <div class="portlet-title">
+                                    <div class="caption">
+                                        <i class="icon-share font-red-sunglo hide"></i>
+                                        <span class="caption-subject font-red-sunglo bold uppercase">游戏活跃度</span>
+                                    </div>
+
+                                </div>
+                                <div class="portlet-body">
+                                    <div id="site_activities_loading">
+                                        <img src="{% static 'admin/img/loading.gif' %}" alt="loading" /> </div>
+                                    <div id="site_activities_content" class="display-none">
+                                        <div id="site_activities" style="height: 300px;"> </div>
+                                    </div>
+                                    <!--div style="margin: 20px 0 10px 30px">
+                                        <div class="row">
+                                            <div class="col-md-3 col-sm-3 col-xs-6 text-stat">
+                                                <span class="label label-sm label-success"> Revenue: </span>
+                                                <h3>$13,234</h3>
+                                            </div>
+
+                                        </div>
+                                    </div-->
+                                </div>
+                            </div>
+                            <!-- END PORTLET-->
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 col-sm-6">
+                            <div class="portlet light bordered">
+                                <div class="portlet-title">
+                                    <div class="caption">
+                                        <i class="icon-cursor font-purple"></i>
+                                        <span class="caption-subject font-purple bold uppercase">基本统计</span>
+                                    </div>
+                                    <div class="actions">
+                                        <a href="javascript:;" class="btn btn-sm btn-circle red easy-pie-chart-reload">
+                                            <i class="fa fa-repeat"></i> 刷新 </a>
+                                    </div>
+                                </div>
+                                <div class="portlet-body">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="easy-pie-chart">
+                                                <div class="number transactions" data-percent="55">
+                                                    <span>+55</span>% </div>
+                                                <a class="title" href="javascript:;"> 新用户
+                                                    <i class="icon-arrow-right"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="margin-bottom-10 visible-sm"> </div>
+                                        <div class="col-md-4">
+                                            <div class="easy-pie-chart">
+                                                <div class="number visits" data-percent="85">
+                                                    <span>+85</span>% </div>
+                                                <a class="title" href="javascript:;"> 身份卡激活
+                                                    <i class="icon-arrow-right"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="margin-bottom-10 visible-sm"> </div>
+                                        <div class="col-md-4">
+                                            <div class="easy-pie-chart">
+                                                <div class="number bounce" data-percent="46">
+                                                    <span>-46</span>% </div>
+                                                <a class="title" href="javascript:;"> 游戏活跃度
+                                                    <i class="icon-arrow-right"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-6">
+                            <div class="portlet light bordered">
+                                <div class="portlet-title">
+                                    <div class="caption">
+                                        <i class="icon-equalizer font-yellow"></i>
+                                        <span class="caption-subject font-yellow bold uppercase">服务器状态</span>
+                                    </div>
+                                    <div class="tools">
+                                        <a href="" class="reload"> </a>
+                                    </div>
+                                </div>
+                                <div class="portlet-body">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="sparkline-chart">
+                                                <div class="number" id="sparkline_bar5"></div>
+                                                <a class="title" href="javascript:;"> 网络
+                                                    <i class="icon-arrow-right"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="margin-bottom-10 visible-sm"> </div>
+                                        <div class="col-md-4">
+                                            <div class="sparkline-chart">
+                                                <div class="number" id="sparkline_bar6"></div>
+                                                <a class="title" href="javascript:;"> CPU
+                                                    <i class="icon-arrow-right"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="margin-bottom-10 visible-sm"> </div>
+                                        <div class="col-md-4">
+                                            <div class="sparkline-chart">
+                                                <div class="number" id="sparkline_line"></div>
+                                                <a class="title" href="javascript:;"> 负载率
+                                                    <i class="icon-arrow-right"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- END CONTENT BODY -->
+            </div>
+            <!-- END CONTENT -->
+
+        </div>
+        <!-- END CONTAINER -->
+        <!-- BEGIN FOOTER -->
+        <div class="page-footer">
+            <div class="page-footer-inner"> 2017 &copy; Loki Dig.
+
+            </div>
+            <div class="scroll-to-top">
+                <i class="icon-arrow-up"></i>
+            </div>
+        </div>
+        <!-- END FOOTER -->
+
+        {% include 'admin/modal_logout.html' %}
+        <!--[if lt IE 9]>
+<script src="../assets/global/plugins/respond.min.js"></script>
+<script src="../assets/global/plugins/excanvas.min.js"></script>
+<![endif]-->
+        <!-- BEGIN CORE PLUGINS -->
+        <script src="{% static 'admin/js/jquery.min.js' %}" type="text/javascript"></script>
+        <script src="{% static 'admin/js/bootstrap.min.js' %}" type="text/javascript"></script>
+        <script src="{% static 'admin/js/js.cookie.min.js' %}" type="text/javascript"></script>
+        <script src="{% static 'admin/js/bootstrap-hover-dropdown.min.js' %}" type="text/javascript"></script>
+        <script src="{% static 'admin/js/jquery.slimscroll.min.js' %}" type="text/javascript"></script>
+        <script src="{% static 'admin/js/jquery.blockui.min.js' %}" type="text/javascript"></script>
+        <script src="{% static 'admin/js/jquery.uniform.min.js' %}" type="text/javascript"></script>
+        <script src="{% static 'admin/js/bootstrap-switch.min.js' %}" type="text/javascript"></script>
+        <!-- END CORE PLUGINS -->
+        <!-- BEGIN PAGE LEVEL PLUGINS -->
+        <script src="{% static 'admin/js/moment.min.js' %}" type="text/javascript"></script>
+        <script src="{% static 'admin/js/daterangepicker.min.js' %}" type="text/javascript"></script>
+        <script src="{% static 'admin/js/morris.min.js' %}" type="text/javascript"></script>
+        <script src="{% static 'admin/js/raphael-min.js' %}" type="text/javascript"></script>
+        <script src="{% static 'admin/js/jquery.waypoints.min.js' %}" type="text/javascript"></script>
+        <script src="{% static 'admin/js/jquery.counterup.min.js' %}" type="text/javascript"></script>
+        <script src="{% static 'admin/js/amcharts.js' %}" type="text/javascript"></script>
+        <script src="{% static 'admin/js/serial.js' %}" type="text/javascript"></script>
+        <script src="{% static 'admin/js/pie.js' %}" type="text/javascript"></script>
+        <script src="{% static 'admin/js/radar.js' %}" type="text/javascript"></script>
+        <script src="{% static 'admin/js/light.js' %}" type="text/javascript"></script>
+        <script src="{% static 'admin/js/patterns.js' %}" type="text/javascript"></script>
+        <script src="{% static 'admin/js/chalk.js' %}" type="text/javascript"></script>
+        <script src="{% static 'admin/js/ammap.js' %}" type="text/javascript"></script>
+        <script src="{% static 'admin/js/worldLow.js' %}" type="text/javascript"></script>
+        <script src="{% static 'admin/js/amstock.js' %}" type="text/javascript"></script>
+        <script src="{% static 'admin/js/fullcalendar.min.js' %}" type="text/javascript"></script>
+        <script src="{% static 'admin/js/jquery.flot.min.js' %}" type="text/javascript"></script>
+        <script src="{% static 'admin/js/jquery.flot.resize.min.js' %}" type="text/javascript"></script>
+        <script src="{% static 'admin/js/jquery.flot.categories.min.js' %}" type="text/javascript"></script>
+        <script src="{% static 'admin/js/jquery.easypiechart.min.js' %}" type="text/javascript"></script>
+        <script src="{% static 'admin/js/jquery.sparkline.min.js' %}" type="text/javascript"></script>
+        <!-- END PAGE LEVEL PLUGINS -->
+        <!-- BEGIN THEME GLOBAL SCRIPTS -->
+        <script src="{% static 'admin/js/app.min.js' %}" type="text/javascript"></script>
+        <!-- END THEME GLOBAL SCRIPTS -->
+        <!-- BEGIN PAGE LEVEL SCRIPTS -->
+        <script src="{% static 'admin/js/dashboard.min.js' %}" type="text/javascript"></script>
+        <!-- END PAGE LEVEL SCRIPTS -->
+        <!-- BEGIN THEME LAYOUT SCRIPTS -->
+        <script src="{% static 'admin/js/layout.min.js' %}" type="text/javascript"></script>
+        <script src="{% static 'admin/js/demo.min.js' %}" type="text/javascript"></script>
+        <script src="{% static 'admin/js/quick-sidebar.min.js' %}" type="text/javascript"></script>
+        <!-- END THEME LAYOUT SCRIPTS -->
+    </body>
+
+</html>
